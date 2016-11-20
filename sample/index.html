@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Sample tidy-menu system</title>
+
+		<!-- These two are all that's required for tidy-menu -->
+		<link rel="stylesheet" type="text/css" href="../menu.css"/>
+		<script type="application/javascript" src="../menu.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="menu-skin/skin.css"/>
+		<link rel="stylesheet" type="text/css" href="icon/icon.css"/>
+		<link rel="stylesheet" type="text/css" href="main/main.css"/>
+	</head>
+<body>
+	<div class="Header">
+	    <ul class="Menu -horizontal">
+		    <li class="-hasSubmenu -noChevron">
+		        <a href="#" data-icon="apps"></a>
+		        <ul>
+			        <li><a href="#">Bacon</a></li>
+			        <li><a href="#">Ipsum</a></li>
+			        <li><a href="#">Dolor</a></li>
+			        <li><a href="#">Amet</a></li>
+		        </ul>
+		    </li>
+		    <li class="-hasSubmenu">
+		        <a href="#">Alpha</a>
+		        <ul>
+			        <li><a href="#">Bacon</a></li>
+			        <li><a href="#">Ipsum</a></li>
+					<li class="-hasSubmenu">
+						<a href="#">Sub-menu</a>
+						<ul>
+							<li><a href="#">Bacon</a></li>
+					        <li><a href="#">Ipsum</a></li>
+					        <li><a href="#">Dolor</a></li>
+					        <li><a href="#">Amet</a></li>
+						</ul>
+					</li>
+			        <li><a href="#">Dolor</a></li>
+			        <li><a href="#">Amet</a></li>
+					<li class="-hasSubmenu">
+						<a href="#">Another Sub-menu</a>
+						<ul>
+							<li><a href="#">Bacon</a></li>
+					        <li><a href="#">Ipsum</a></li>
+							<li class="-hasSubmenu">
+								<a href="#">Sub-sub-menu!</a>
+								<ul>
+									<li><a href="#">Bacon</a></li>
+							        <li><a href="#">Ipsum</a></li>
+							        <li><a href="#">Dolor</a></li>
+							        <li><a href="#">Amet</a></li>
+								</ul>
+							</li>
+					        <li><a href="#">Dolor</a></li>
+					        <li><a href="#">Amet</a></li>
+						</ul>
+					</li>
+		        </ul>
+		    </li>
+		    <li><a href="#">Beta</a></li>
+		    <li class="-hasSubmenu">
+		        <a href="#">Gamma</a>
+		        <ul>
+			        <li><a href="#" data-icon="">Ipsum</a></li>
+			        <li class="-hasSubmenu">
+						<a data-icon="cast" href="#">Dolorsssssssssssssssssssssssss</a>
+						<ul>
+							<li><a href="#">Bacon</a></li>
+					        <li><a href="#">Ipsum</a></li>
+					        <li><a href="#">Dolor</a></li>
+					        <li><a href="#">Amet</a></li>
+						</ul>
+					</li>
+			        <li><a href="#" data-icon="">Amet</a></li>
+					<li><a href="#" data-icon="cake">Tail pork loin chicken</a></li>
+					<li><a href="#" data-icon="">Bacon ipsum dolor amet pork loin rump filet mignon swine</a></li>
+		        </ul>
+		    </li>
+		    <li><a href="#">Delta</a></li>
+		    <li><a href="#">Epsilon</a></li>
+		</ul>
+		<ul class="Menu -horizontal -alignRight">
+			<li><a class="Icon" href="#">whatshot</a></li>
+			<li><a class="Icon" href="#">mood</a></li>
+			<li><a class="Icon" href="#">cake</a></li>
+		    <li class="-hasSubmenu -noChevron">
+		        <a href="#" data-icon="person">Joe Bloggs</a>
+		        <ul>
+		            <li><a href="#">Profile</a></li>
+		            <li><span>Logout</span></li>
+					<li class="-hasSubmenu">
+						<a href="#">Sub-menu</a>
+						<ul>
+							<li><a href="#">Bacon</a></li>
+					        <li><a href="#">Ipsum</a></li>
+					        <li><a href="#">Dolor</a></li>
+					        <li><a href="#">Amet</a></li>
+						</ul>
+					</li>
+		        </ul>
+		    </li>
+		</ul>
+	</div>
+	<div class="Content">
+	    <h1>Vertical Menu:</h1>
+	    <ul class="Menu -vertical">
+	        <li><a href="#">Bacon</a></li>
+	        <li><a href="#">Ipsum</a></li>
+	        <li class="-hasSubmenu">
+				<a href="#">Dolor</a>
+				<ul>
+			        <li><a href="#">Bacon</a></li>
+			        <li><a href="#">Ipsum</a></li>
+					<li class="-hasSubmenu">
+						<a href="#">Sub-menu</a>
+						<ul>
+							<li><a href="#">Bacon</a></li>
+					        <li><a href="#">Ipsum</a></li>
+					        <li><a href="#">Dolor</a></li>
+					        <li><a href="#">Amet</a></li>
+						</ul>
+					</li>
+			        <li><a href="#">Dolor</a></li>
+			        <li><a href="#">Amet</a></li>
+					<li class="-hasSubmenu">
+						<a href="#">Another Sub-menu</a>
+						<ul>
+							<li><a href="#">Bacon</a></li>
+					        <li><a href="#">Ipsum</a></li>
+							<li class="-hasSubmenu">
+								<a href="#">Sub-sub-menu!</a>
+								<ul>
+									<li><a href="#">Bacon</a></li>
+							        <li><a href="#">Ipsum</a></li>
+							        <li><a href="#">Dolor</a></li>
+							        <li><a href="#">Amet</a></li>
+								</ul>
+							</li>
+					        <li><a href="#">Dolor</a></li>
+					        <li><a href="#">Amet</a></li>
+						</ul>
+					</li>
+		        </ul>
+			</li>
+	        <li><a href="#">Amet</a></li>
+        </ul>
+	</div>
+</body>
+</html>
