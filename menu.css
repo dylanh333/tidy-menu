@@ -209,7 +209,7 @@ element
         border-color: black; /* chevron colour */
     }
     /* Background */
-    .Menu li ul,
+    .Menu ul,
     .Menu.-floating {
         background: white;
     }
