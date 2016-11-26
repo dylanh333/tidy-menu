@@ -1,6 +1,12 @@
 (function(){
+    var stack = [];
+    var ready = true;
+
     function $(selector, context){
-        context = context || document;
+        if(
+            !context
+            || typeof context["querySelectorAll"] != "function"
+        ) context = document;
         return context["querySelectorAll"](selector);
     }
 
@@ -10,13 +16,17 @@
         }
     }
 
-    function showMenu(menu){
-        var menu = this;
-        var ul = $("ul", menu)[0];
-
+    /**
+     * showMenu - shows the menu specified by ul, and pushes it to the stack
+     */
+    function showMenu(ul){
         if(!ul || ul.classList.contains("-visible")) return;
 
-        menu.classList.add("-active");
+        stack.push(ul);
+
+        if(!ul.classList.contains("Menu"))
+            ul.parentElement.classList.add("-active");
+
         ul.classList.add("-animating");
         ul.classList.add("-visible");
         setTimeout(function(){
@@ -24,48 +34,73 @@
         }, 25);
     }
 
-    function hideMenu(menu){
-        var menu = this;
-        var ul = $("ul", menu)[0];
 
-        if(!ul || !ul.classList.contains("-visible")) return;
+    /**
+     * hideMenu - hides the menu at the top of the stack, and removes it from
+     * the stack.
+     */
+    function hideMenu(){
+        var ul = null;
 
-        menu.classList.remove("-active");
+        if(stack.length == 0) return;
+        else ul = stack.pop();
+
+        if(!ul.classList.contains("Menu"))
+            ul.parentElement.classList.remove("-active");
+
         ul.classList.add("-animating");
         setTimeout(function(){
             ul.classList.remove("-visible");
             ul.classList.remove("-animating");
-        }, 300);
+        }, 1000);
     }
 
-    function hideAllInactiveMenus(menu){
-        var menu = this;
-        forEach(
-            $("li.-hasSubmenu.-active:not(:hover)", menu.parent),
-            function(e){
-                e.hideMenu && e.hideMenu();
-            }
-        );
+
+    /**
+     * hideChildMenus - hides all visible child menus under ul, or all visible
+     * menus if ul is null;
+     */
+    function hideChildMenus(ul){
+        if(!ready) return;
+        ready = false;
+        var backup = stack.slice(0);
+        while(stack.length > 0 && stack[stack.length-1] != ul){
+            if(stack.length == 1) debugger;
+            hideMenu();
+        }
+        ready = true;
+    }
+
+    function hideAllMenus(){
+        hideChildMenus(null);
+    }
+
+    function activateMenuItem(li){
+        if(stack.length > 0 && stack[stack.length-1].parentElement == li)
+            return;
+        if(li.parentElement.classList.contains("-animating")) return;
+
+        hideChildMenus(li.parentElement);
+        if(stack.length == 0) showMenu(li.parentElement);
+
+        if(li.classList.contains("-hasSubmenu")){
+            //TODO: enforce that ul is a direct child of li
+            var submenu = $("ul", li)[0];
+            showMenu(submenu);
+        }
     }
 
     window.addEventListener("load", function(){
-        forEach($(".Menu li.-hasSubmenu"), function(e){
-            e.showMenu = showMenu;
-            e.hideMenu = hideMenu;
+        forEach($(".Menu li > a:first-child"), function(e){
+            e.addEventListener("click", function(){
+                activateMenuItem(this.parentElement);
+            });
+            e.addEventListener("mouseenter", function(){
+                if(stack.length > 0) activateMenuItem(this.parentElement);
+            });
         });
 
-        forEach($(".Menu > li.-hasSubmenu"), function(e){
-            e.addEventListener("click", showMenu);
-        });
-
-        forEach($(".Menu > li.-hasSubmenu li"), function(e){
-            e.addEventListener("mouseenter", hideAllInactiveMenus);
-        });
-
-        forEach($(".Menu > li.-hasSubmenu li.-hasSubmenu"), function(e){
-            e.addEventListener("mouseenter", showMenu);
-        });
-
-        document.addEventListener("click", hideAllInactiveMenus);
+        //document.addEventListener("click", hideAll);
+        window.addEventListener("blur", hideAllMenus);
     });
 })();

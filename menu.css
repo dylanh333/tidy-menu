@@ -168,7 +168,7 @@ element
     .Menu.-horizontal,
     .Menu li,
     .Menu li > :first-child {
-        height: 40px;
+        min-height: 40px;
     }
     .Menu *[data-icon]:before,
     .Menu .Icon {
@@ -237,7 +237,8 @@ element
     /* Animation speed of dropdown menus */
     .Menu li > ul,
     .Menu.-floating {
-        transition: width 0.1s, height 0.1s, transform 0.1s, opacity 0.1s;
+        transition-duration: 1s;
+        transition-property: width, height, transform, opacity;
     }
 
     /* Styling of hyperlink text */
